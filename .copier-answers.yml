@@ -1,0 +1,15 @@
+# Changes here will be overwritten by Copier
+_commit: v0.2.0
+_src_path: gh:alan-turing-institute/python-project-template
+coc: our_coc
+email: shaun.t.e.donnelly@gmail.com
+full_name: Shaun Donnelly
+license: MIT
+min_python_version: '3.11'
+org: stedonnelly
+project_name: fast_api_shibboleth
+project_short_description: A package for integrating shibboleth SSO into a FastAPI
+    instance
+python_name: fast_api_shibboleth
+typing: loose
+url: https://github.com/stedonnelly/fast_api_shibboleth
