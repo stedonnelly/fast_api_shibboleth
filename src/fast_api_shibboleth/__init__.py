@@ -1,10 +1,12 @@
+"""Minimal FastAPI Shibboleth SAML Authentication Package.
+
+Usage:
+    from fast_api_shibboleth import create_saml_router
+
+    app = FastAPI()
+    app.include_router(create_saml_router("idp_metadata.xml"))
 """
-fast_api_shibboleth: A package for integrating shibboleth SSO into a FastAPI instance
-"""
 
-from __future__ import annotations
+from .auth import create_saml_router
 
-from importlib.metadata import version
-
-__all__ = ("__version__",)
-__version__ = version(__name__)
+__all__ = ["create_saml_router"]

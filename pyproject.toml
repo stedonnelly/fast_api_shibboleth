@@ -27,13 +27,14 @@ classifiers = [
   "Topic :: Scientific/Engineering",
   "Typing :: Typed",
 ]
-dependencies = []
+dependencies = ["fastapi","uvicorn[standard]","python-multipart","pydantic","httpx","itsdangerous","cryptography","xmltodict","python3-saml","lxml","requests"]
 
 [project.optional-dependencies]
 dev = [
   "pytest >=6",
   "pytest-cov >=3",
   "pre-commit",
+  "ipython"
 ]
 
 [project.urls]
