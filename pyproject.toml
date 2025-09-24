@@ -51,9 +51,9 @@ filterwarnings = [
   "error",
 ]
 log_cli_level = "INFO"
-testpaths = [
-  "tests",
-]
+# testpaths = [
+#   "tests",
+# ]
 
 [tool.coverage]
 run.source = ["fast_api_shibboleth"]
