@@ -11,7 +11,12 @@ def get_saml_config(
     """Load minimal SAML config from XML."""
     # Use environment variable if no xml_file provided
     if xml_file is None:
-        xml_file = os.getenv("SAML_METADATA_XML", "idp_metadata.xml")
+        xml_file = os.getenv("SAML_METADATA_XML")
+    if xml_file is None:
+        err_str = (
+            "SAML_METADATA_XML environment variable not set and no xml_file provided"
+        )
+        raise ValueError(err_str)
 
     tree = ET.parse(xml_file)
     root = tree.getroot()

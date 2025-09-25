@@ -1,5 +1,7 @@
 """Minimal SAML authentication for FastAPI."""
 
+import os
+
 from fastapi import APIRouter, Request
 from fastapi.responses import RedirectResponse
 from onelogin.saml2.auth import OneLogin_Saml2_Auth  # type: ignore[import-untyped]
@@ -11,7 +13,10 @@ def create_saml_router(xml_file: str | None = None) -> APIRouter:
     """Create minimal SAML router with login and response handling."""
     router = APIRouter()
 
-    @router.get("/login")
+    login_route = os.environ.get("SAML_LOGIN_ROUTE", "/auth/saml/login")
+    acs_route = os.environ.get("SAML_ACS_ROUTE", "/auth/saml/acs")
+
+    @router.get(login_route)
     async def saml_login(request: Request):
         """Redirect to IdP for SAML login."""
         base_url = f"{request.url.scheme}://{request.headers.get('host')}"
@@ -29,7 +34,7 @@ def create_saml_router(xml_file: str | None = None) -> APIRouter:
         auth = OneLogin_Saml2_Auth(req, settings)
         return RedirectResponse(url=auth.login())
 
-    @router.post("/acs")
+    @router.post(acs_route)
     async def saml_acs(request: Request):
         """Handle SAML response from IdP."""
         base_url = f"{request.url.scheme}://{request.headers.get('host')}"
